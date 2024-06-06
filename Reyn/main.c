@@ -224,7 +224,7 @@ void menuData(Pasien pasien[], int *jumlah_pasien) {
             default:
                 printf("Pilihan tidak valid.\n");
         }
-    } while (pilihan != 4);
+    } while (pilihan != 5);
 }
 
 void menuRiwayat() {
