@@ -20,9 +20,13 @@ void bacaCSV(Pasien pasien[], int *jumlah_pasien) {
         printf("File tidak dapat dibuka.\n");
         exit(EXIT_FAILURE);
     }
-
-    char line[100];
+    char line[200]; 
     while (fgets(line, sizeof(line), file)) {
+        if (*jumlah_pasien == 0) {
+            (*jumlah_pasien)++;
+            continue;
+        }
+
         sscanf(line, "%d,%[^,],%[^,],%[^,],%[^,],%[^,],%d,%lld,%s",
                &pasien[*jumlah_pasien].no,
                pasien[*jumlah_pasien].nama,
@@ -33,10 +37,9 @@ void bacaCSV(Pasien pasien[], int *jumlah_pasien) {
                &pasien[*jumlah_pasien].umur,
                &pasien[*jumlah_pasien].no_bpjs,
                pasien[*jumlah_pasien].id_pasien);
-               
+
                sscanf(line, "%*[^,],%*[^,],%*[^,],%*[^,],%*[^,],%*[^,],%*[^,],%*lld,%[^,]",
                pasien[*jumlah_pasien].id_pasien);
-               
 
         (*jumlah_pasien)++;
     }
@@ -91,6 +94,7 @@ void tambahPasien(Pasien pasien[], int *jumlah_pasien) {
 
     printf("Masukkan Umur: ");
     scanf("%d", &new_pasien.umur);
+
     printf("Masukkan Nomor BPJS: ");
     scanf("%lld", &new_pasien.no_bpjs);
     getchar(); 
@@ -194,6 +198,85 @@ void cariPasien(Pasien pasien[], int jumlah_pasien) {
     printf("Nomor pasien tidak ditemukan.\n");
 }
 
+void ubahPasien(Pasien pasien[], int jumlah_pasien) {
+    char nama[50], alamat[50], kota[20], tempat_lahir[20], tanggal_lahir[30], id_pasien[20];
+    int umur;
+    long long no_bpjs;
+
+    printf("Masukkan nama pasien yang ingin diubah: ");
+    getchar();
+    fgets(nama, sizeof(nama), stdin);  
+
+    if (nama[strlen(nama) - 1] == '\n')
+        nama[strlen(nama) - 1] = '\0';
+
+    for (int i = 0; i < jumlah_pasien; i++) {
+        if (strcmp(pasien[i].nama, nama) == 0) {
+            printf("Masukkan data baru untuk pasien %s:\n", nama);
+
+            printf("Alamat: ");
+            fgets(alamat, sizeof(alamat), stdin);
+            hapusNewline(alamat);
+
+            printf("Kota: ");
+            fgets(kota, sizeof(kota), stdin);
+            hapusNewline(kota);           
+
+            printf("Tempat Lahir: ");
+            fgets(tempat_lahir, sizeof(tempat_lahir), stdin);
+            hapusNewline(tempat_lahir);
+
+            printf("Tanggal Lahir: ");
+            fgets(tanggal_lahir, sizeof(tanggal_lahir), stdin);
+            hapusNewline(tanggal_lahir);
+
+            printf("Umur: ");
+            scanf("%d", &umur);
+
+            printf("No. BPJS: ");
+            scanf("%lld", &no_bpjs);
+
+            printf("ID Pasien: ");
+            getchar();
+            fgets(id_pasien, sizeof(id_pasien), stdin);                        
+
+            strcpy(pasien[i].alamat, alamat);
+            strcpy(pasien[i].kota, kota);
+            strcpy(pasien[i].tempat_lahir, tempat_lahir);
+            strcpy(pasien[i].tanggal_lahir, tanggal_lahir);
+            pasien[i].umur = umur;
+            pasien[i].no_bpjs = no_bpjs;
+            strcpy(pasien[i].id_pasien, id_pasien);
+            
+            FILE *file = fopen("Data.csv", "w");
+            if (file == NULL) {
+                printf("File tidak dapat dibuka.\n");
+                exit(EXIT_FAILURE);
+            }
+            fprintf(file, "No,Nama Lengkap,Alamat,Kota,Tempat Lahir,Tanggal Lahir,Umur (th),No BPJS,ID Pasien\n");
+            for (int j = 0; j < jumlah_pasien; j++) {
+                if (pasien[j].no != 0){
+                    fprintf(file, "%d,%s,%s,%s,%s,%s,%d,%lld,%s",
+                        pasien[j].no,
+                        pasien[j].nama,
+                        pasien[j].alamat,
+                        pasien[j].kota,
+                        pasien[j].tempat_lahir,
+                        pasien[j].tanggal_lahir,
+                        pasien[j].umur,
+                        pasien[j].no_bpjs,
+                        pasien[j].id_pasien);
+                }
+            }
+            fclose(file);
+            
+            printf("Data pasien %s telah diubah.\n", nama);
+            return;
+        }
+    }
+    printf("Pasien dengan nama %s tidak ditemukan.\n", nama);
+}
+
 void menuData(Pasien pasien[], int *jumlah_pasien) {
     int pilihan;
     do {
@@ -217,6 +300,7 @@ void menuData(Pasien pasien[], int *jumlah_pasien) {
                 cariPasien(pasien, *jumlah_pasien);
                 break;
             case 4:
+                ubahPasien(pasien, *jumlah_pasien);
                 break;
             case 5:
                 printf("Kembali ke Menu Utama..\n");
@@ -317,4 +401,3 @@ int main() {
 
     return 0;
 }
-
