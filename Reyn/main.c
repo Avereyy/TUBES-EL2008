@@ -2,6 +2,12 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define MAX_LINE_LENGTH 1024
+#define MAX_PASIEN 1000
+#define MAX_DIAGNOSIS 100
+#define MAX_BULAN 12
+#define MAX_TAHUN 5
+
 typedef struct {
     int no;
     char nama[50];
