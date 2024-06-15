@@ -20,6 +20,33 @@ typedef struct {
     char id_pasien[20];
 } Pasien;
 
+
+typedef struct {
+    int tahun;
+    int bulan;
+    char diagnosis[100];
+} Diagpasien;
+
+typedef struct {
+    char diagnosis[100];
+    int count;
+} DiagnosisCount;
+
+typedef struct {
+    int tahun;
+    int bulan;
+    DiagnosisCount diagnosisCounts[MAX_DIAGNOSIS];
+    int diagnosisCountSize;
+    int total_pasien; // Total patients for this month
+} MonthlyDiagnosisData;
+
+typedef struct {
+    int tahun;
+    DiagnosisCount diagnosisCounts[MAX_DIAGNOSIS];
+    int diagnosisCountSize;
+    int total_pasien; // Total patients for this year
+} YearlyDiagnosisData;
+
 void bacaCSV(Pasien pasien[], int *jumlah_pasien) {
     FILE *file = fopen("Data.csv", "r");
     if (file == NULL) {
@@ -351,31 +378,6 @@ void menuRiwayat() {
 }
 
 
-typedef struct {
-    int tahun;
-    int bulan;
-    char diagnosis[100];
-} Pasien;
-
-typedef struct {
-    char diagnosis[100];
-    int count;
-} DiagnosisCount;
-
-typedef struct {
-    int tahun;
-    int bulan;
-    DiagnosisCount diagnosisCounts[MAX_DIAGNOSIS];
-    int diagnosisCountSize;
-    int total_pasien; // Total patients for this month
-} MonthlyDiagnosisData;
-
-typedef struct {
-    int tahun;
-    DiagnosisCount diagnosisCounts[MAX_DIAGNOSIS];
-    int diagnosisCountSize;
-    int total_pasien; // Total patients for this year
-} YearlyDiagnosisData;
 
 int parse_bulan(const char *bulan_str) {
     if (strcasecmp(bulan_str, "jan") == 0 || strcasecmp(bulan_str, "januari") == 0) return 1;
@@ -493,7 +495,7 @@ void menuRiwayatDiagnosis(){
     }
 
     char line[MAX_LINE_LENGTH];
-    Pasien pasiens[MAX_PASIEN];
+    Diagpasien pasiens[MAX_PASIEN];
     int pasien_count = 0;
 
     fgets(line, MAX_LINE_LENGTH, file);
