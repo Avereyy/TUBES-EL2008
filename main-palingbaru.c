@@ -887,8 +887,7 @@ void menuRiwayat() {
         printf("2. Hapus Riwayat\n");
         printf("3. Ubah Riwayat\n");
         printf("4. Cari Riwayat\n");
-        printf("5. Lihat Riwayat Diagnosis\n");
-        printf("6. Kembali ke Menu Utama\n");
+        printf("5. Kembali ke Menu Utama\n");
         printf("Pilihan: ");
         scanf("%d", &pilihan);
 
@@ -907,15 +906,12 @@ void menuRiwayat() {
             cariRiwayat();
             break;
         case 5:
-            menuRiwayatDiagnosis();
-            break;
-        case 6:
             printf("Kembali ke Menu Utama..\n");
             break;
         default:
             printf("Pilihan tidak valid.\n");
         }
-    } while (pilihan != 6);
+    } while (pilihan != 5);
 }
 
 void cariKontrol()
@@ -1214,8 +1210,9 @@ int main() {
         printf("2. Akses Riwayat Pasien\n");
         printf("3. Akses Data Rumah Sakit\n");
         printf("4. Akses Informasi Pasien dan Riwayat\n");
-        printf("5. Akses Informasi Pasien Perlu kontrol\n");
-        printf("6. Keluar\n");
+        printf("5. Akses Data Riwayat Diagnosis\n");
+        printf("6. Akses Informasi Pasien Perlu kontrol\n");
+        printf("7. Keluar\n");
         printf("Pilihan: ");
         scanf("%d", &pilihan);
 
@@ -1233,15 +1230,18 @@ int main() {
                 runno3();
                 break;
             case 5:
-                runno6();
+                menuRiwayatDiagnosis();
                 break;
             case 6:
+                runno6();
+                break;
+            case 7:
                 printf("Keluar..\n");
                 break;
             default:
                 printf("Pilihan tidak valid.\n");
         }
-    } while (pilihan != 6);
+    } while (pilihan != 7);
 
     return 0;
 }
