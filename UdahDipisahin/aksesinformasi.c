@@ -1,5 +1,6 @@
 #include "aksesinformasi.h"
 #include "menudatalib.h"
+#include <stdio.h>
 
 void bacaRiwayat(char *filename)
 {
@@ -122,7 +123,7 @@ void cariInfo(Pasien pasien[], int jumlah_pasien)
     }
 }
 
-void tampilkanMenu()
+void tampilkanMenuInfo()
 {
     printf("1. Cari Info\n");
     printf("6. Keluar\n");
