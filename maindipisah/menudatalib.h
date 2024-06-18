@@ -3,6 +3,7 @@
 
 #include "mainbaru.h"
 
+
 void trimWhitespace(char* str);
 void bacaData(Pasien pasien[], int *jumlah_pasien);
 void hapusNewline(char *str);
