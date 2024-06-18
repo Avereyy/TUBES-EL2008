@@ -425,16 +425,32 @@ void simpanCSV(char *filename)
 
 void tambahRiwayat()
 {
+    Riwayat new_record;
     if (record_count >= MAX_RECORDS)
     {
         printf("Kapasitas penuh!\n");
         return;
     }
 
-    Riwayat new_record;
+    int nomor_valid = 0;
+    while (!nomor_valid) {
+        printf("Masukkan Nomor: ");
+        scanf("%d", &new_record.no);
+        getchar(); 
+
+        nomor_valid = 1;
+        for (int i = 0; i < record_count; i++) {
+            if (new_record.no == records[i].no) { 
+                printf("Nomor pasien sudah ada, masukkan nomor yang lain.\n");
+                nomor_valid = 0;
+                break;
+            }
+        }
+    }
+
     printf("Masukkan No: ");
     scanf("%d", &new_record.no);
-    getchar(); // untuk mengonsumsi newline
+    getchar(); 
 
     printf("Masukkan Tanggal: ");
     fgets(new_record.tanggal, MAX_STRING, stdin);
@@ -461,7 +477,7 @@ void tambahRiwayat()
     new_record.biaya[strcspn(new_record.biaya, "\n")] = 0;
 
     records[record_count++] = new_record;
-    printf("ditambahkan!\n");
+    printf("Riwayat ditambahkan!\n");
     simpanCSV("Riwayat.csv");
 }
 
