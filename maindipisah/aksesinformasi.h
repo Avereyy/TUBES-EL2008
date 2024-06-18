@@ -3,9 +3,6 @@
 
 #include "mainbaru.h"
 
-//extern Riwayat records[MAX_RECORDS];
-//extern int record_count = 0;
-
 
 void bacaRiwayat(char *filename);
 void cariInfo(Pasien pasien[], int jumlah_pasien);
