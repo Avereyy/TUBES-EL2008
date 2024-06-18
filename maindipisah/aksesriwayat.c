@@ -3,8 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-//extern Riwayat records[MAX_RECORDS];
-//extern int record_count = 0;
+
 
 void baca_CSV(char *filename)
 {
