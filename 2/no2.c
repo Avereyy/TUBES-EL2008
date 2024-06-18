@@ -272,7 +272,7 @@ int main()
         {
         case 1:
             tambahRiwayat();
-            break;
+            break;A
         case 2:
             ubahRiwayat();
             break;

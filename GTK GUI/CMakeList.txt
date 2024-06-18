@@ -1,0 +1,22 @@
+cmake_minimum_required(VERSION 3.0)
+project(GTKTutorial)
+
+set(CMAKE_C_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
+
+set(GTK3_INCLUDE_DIRS "C:/msys64/mingw64/include/")
+set(GTK3_LIBRARY_DIRS "C:/msys64/mingw64/lib")
+set(ENV{PKG_CONFIG_PATH} "C:/msys64/mingw64/lib/pkgconfig")
+
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(GTK3 REQUIRED gtk3)
+
+include_directories(${GTK4_INCLUDE_DIRS})
+link_directories(${GTK4_LIBRARY_DIRS})
+add_definitions(${GTK4_CFLAGS_OTHER})
+
+add_executable(TutorialApp main.c)
+set_target_properties(TutorialApp PROPERTIES WIN32_EXECUTABLE true) 
+target_link_libraries(TutorialApp ${GTK3_LIBRARIES})
+
+gcc -I"C:\msys64\mingw64\include\gtk-3.0" -I"C:\msys64\mingw64\include\gdk-pixbuf-2.0" -I"C:\msys64\mingw64\include\atk-1.0" -o tes tes.c -lgtk-3 -lgdk-3 -latk-1.0
