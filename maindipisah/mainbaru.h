@@ -66,7 +66,9 @@ typedef struct {
     int total_pasien; // Total patients for this year
 } YearlyDiagnosisData;
 
-Riwayat records[MAX_RECORDS];
-int record_count = 0;
+
+extern Riwayat records[MAX_RECORDS];
+extern int record_count;
+
 
 #endif // MAINBARU_H
