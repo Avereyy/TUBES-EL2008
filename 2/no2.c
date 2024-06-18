@@ -116,7 +116,23 @@ void tambahRiwayat()
         printf("Kapasitas penuh!\n");
         return;
     }
+        int nomor_valid = 0;
+    while (!nomor_valid) {
+        printf("Masukkan Nomor: ");
+        scanf("%d", &new_record.no);
+        getchar(); 
 
+        nomor_valid = 1;
+        for (int i = 0; i < record_count; i++) {
+            if (new_record.no == records[i].no) { 
+                printf("Nomor pasien sudah ada, masukkan nomor yang lain.\n");
+                nomor_valid = 0;
+                break;
+            }
+        }
+    }
+
+    pr
     Riwayat new_record;
     printf("Masukkan No: ");
     scanf("%d", &new_record.no);
