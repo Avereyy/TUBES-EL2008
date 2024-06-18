@@ -2,9 +2,8 @@
 #define KONTROLLIB_H
 
 #include "mainbaru.h"
-
-//extern Riwayat records[MAX_RECORDS];  // External declaration of global array
-//extern int record_count;              // External declaration of global count
+#include "aksesinformasi.h"
+#include "aksesriwayat.h"
 
 void cariKontrol();
 void tampilkanMenu();
