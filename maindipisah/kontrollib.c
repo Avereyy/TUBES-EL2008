@@ -1,5 +1,5 @@
 #include "kontrollib.h"
-#include "aksesriwayat.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
