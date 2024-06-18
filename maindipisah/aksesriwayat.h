@@ -2,9 +2,8 @@
 #define AKSESRIWAYAT_H
 
 #include "mainbaru.h"
+#include "menudatalib.h"
 
-//extern Riwayat records[MAX_RECORDS];
-//extern int record_count = 0;
 
 void bacaCSV(char *filename);
 void simpanCSV(char *filename);
