@@ -18,6 +18,8 @@
 #define MAX_BULAN 12
 #define MAX_TAHUN 5
 
+Riwayat records[MAX_RECORDS];
+int record_count = 0;
 
 int main() {
     Pasien pasien[100];
